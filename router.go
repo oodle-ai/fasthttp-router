@@ -434,6 +434,7 @@ func (r *Router) Handler(ctx *fasthttp.RequestCtx) {
 	path := strconv.B2S(ctx.Request.URI().PathOriginal())
 	method := strconv.B2S(ctx.Request.Header.Method())
 	methodIndex := r.methodIndexOf(method)
+	path = strings.TrimSuffix(path, "/")
 
 	if methodIndex > -1 {
 		if tree := r.trees[methodIndex]; tree != nil {
